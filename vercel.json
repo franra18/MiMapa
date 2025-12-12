@@ -20,7 +20,7 @@
     },
     {
       "source": "/(.*)",
-      "destination": "/frontend/vue-frontend/$1"
+      "destination": "/frontend/vue-frontend/index.html"
     }
   ]
 }
