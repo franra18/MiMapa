@@ -26,12 +26,12 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Incluir Routers
-app.include_router(auth.router, prefix="/auth") # Las rutas serán /auth/register y /auth/token
-app.include_router(users.router)
-app.include_router(markers.router)
-app.include_router(visits.router)
+# Incluir Routers bajo el prefijo /api
+app.include_router(auth.router, prefix="/api/auth")
+app.include_router(users.router, prefix="/api")
+app.include_router(markers.router, prefix="/api")
+app.include_router(visits.router, prefix="/api")
 
-@app.get("/")
+@app.get("/api")
 async def root():
     return {"message": "API funcionando correctamente"}
