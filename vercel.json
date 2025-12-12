@@ -12,12 +12,6 @@
       "dest": "backend/main.py"
     }
   ],
-  "functions": {
-    "backend/main.py": {
-      "memory": 1024,
-      "maxDuration": 60
-    }
-  },
   "headers": [
     {
       "source": "/(.*)",
