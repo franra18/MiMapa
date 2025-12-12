@@ -2,24 +2,56 @@
   "version": 2,
   "builds": [
     {
+      "src": "backend/main.py",
+      "use": "@vercel/python"
+    },
+    {
       "src": "frontend/vue-frontend/package.json",
       "use": "@vercel/static-build",
       "config": {
         "distDir": "dist"
       }
-    },
-    {
-      "src": "backend/main.py",
-      "use": "@vercel/python"
     }
   ],
   "routes": [
+    {
+      "src": "/api/auth/login/google",
+      "dest": "/backend/main.py"
+    },
+    {
+      "src": "/api/auth/google/callback",
+      "dest": "/backend/main.py"
+    },
+    {
+      "src": "/api/auth/(.*)",
+      "dest": "/backend/main.py"
+    },
+    {
+      "src": "/api/users/(.*)",
+      "dest": "/backend/main.py"
+    },
+    {
+      "src": "/api/markers/(.*)",
+      "dest": "/backend/main.py"
+    },
+    {
+      "src": "/api/visits/(.*)",
+      "dest": "/backend/main.py"
+    },
     {
       "src": "/api/(.*)",
       "dest": "/backend/main.py"
     },
     {
-      "handle": "filesystem"
+      "src": "/assets/(.*)",
+      "dest": "/frontend/vue-frontend/dist/assets/$1"
+    },
+    {
+      "src": "/(.*\\.(js|css|png|jpg|jpeg|gif|svg|ico|json|woff|woff2|ttf|eot))",
+      "headers": {
+        "Cache-Control": "public, max-age=31536000, immutable"
+      },
+      "dest": "/frontend/vue-frontend/dist/$1"
     },
     {
       "src": "/(.*)",
