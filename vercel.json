@@ -1,35 +1,19 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "frontend/vue-frontend/package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "dist"
-      }
-    },
-    {
-      "src": "backend/main.py",
-      "use": "@vercel/python"
-    }
-  ],
+  "buildCommand": "cd frontend/vue-frontend && npm run build",
+  "outputDirectory": "frontend/vue-frontend/dist",
   "routes": [
     {
       "src": "/api/(.*)",
       "dest": "/backend/main.py"
     },
     {
-      "src": "/assets/(.*)",
-      "dest": "/frontend/vue-frontend/dist/assets/$1"
-    },
-    {
-      "src": "/(.*\\.(js|css|png|jpg|jpeg|gif|svg|ico|json))",
-      "dest": "/frontend/vue-frontend/dist/$1"
-    },
-    {
       "src": "/(.*)",
-      "dest": "/frontend/vue-frontend/dist/index.html"
+      "dest": "/index.html"
     }
   ],
-  "outputDirectory": "frontend/vue-frontend/dist"
+  "functions": {
+    "backend/main.py": {
+      "runtime": "python3.9"
+    }
+  }
 }
