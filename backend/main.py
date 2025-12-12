@@ -1,8 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from routers import auth, users, markers, visits
+from .routers import auth, users, markers, visits
 from starlette.middleware.sessions import SessionMiddleware
-from core.config import settings
+from .core.config import settings
 
 app = FastAPI(title="Mi API de Producción")
 
