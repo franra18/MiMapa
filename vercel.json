@@ -1,21 +1,29 @@
 {
   "version": 2,
-  "buildCommand": "cd frontend/vue-frontend && npm install && npm run build",
-  "outputDirectory": "frontend/vue-frontend/dist",
   "builds": [
+    {
+      "src": "frontend/vue-frontend/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
+    },
     {
       "src": "backend/main.py",
       "use": "@vercel/python"
     }
   ],
-  "rewrites": [
+  "routes": [
     {
-      "source": "/api/(.*)",
-      "destination": "/backend/main.py"
+      "src": "/api/(.*)",
+      "dest": "/backend/main.py"
     },
     {
-      "source": "/(.*)",
-      "destination": "/index.html"
+      "handle": "filesystem"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/frontend/vue-frontend/dist/index.html"
     }
   ]
 }
