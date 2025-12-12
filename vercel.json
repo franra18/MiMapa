@@ -5,7 +5,7 @@
       "src": "frontend/vue-frontend/package.json",
       "use": "@vercel/static-build",
       "config": {
-        "distDir": "frontend/vue-frontend/dist"
+        "distDir": "dist"
       }
     },
     {
@@ -30,5 +30,6 @@
       "src": "/(.*)",
       "dest": "/frontend/vue-frontend/dist/index.html"
     }
-  ]
+  ],
+  "outputDirectory": "frontend/vue-frontend/dist"
 }
