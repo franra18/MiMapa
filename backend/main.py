@@ -1,8 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from .routers import auth, users, markers, visits
+from routers import auth, users, markers, visits
 from starlette.middleware.sessions import SessionMiddleware
-from .core.config import settings
+from core.config import settings
 
 app = FastAPI(title="Mi API de Producción")
 
@@ -26,12 +26,12 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Incluir Routers bajo el prefijo /api
-app.include_router(auth.router, prefix="/api/auth")
-app.include_router(users.router, prefix="/api")
-app.include_router(markers.router, prefix="/api")
-app.include_router(visits.router, prefix="/api")
+# Incluir Routers
+app.include_router(auth.router, prefix="/auth")
+app.include_router(users.router)
+app.include_router(markers.router)
+app.include_router(visits.router)
 
-@app.get("/api")
+@app.get("/")
 async def root():
     return {"message": "API funcionando correctamente"}

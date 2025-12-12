@@ -1,10 +1,10 @@
 from fastapi import APIRouter, Depends, HTTPException
 from typing import List
-from ..models.visit import VisitCreate, VisitResponse
-from ..models.marker import MarkerResponse
-from ..core.database import visits_collection, markers_collection, users_collection
-from ..core.security import get_current_user
-from ..models.user import UserBase
+from models.visit import VisitCreate, VisitResponse
+from models.marker import MarkerResponse
+from core.database import visits_collection, markers_collection, users_collection
+from core.security import get_current_user
+from models.user import UserBase
 from bson import ObjectId
 from datetime import datetime
 

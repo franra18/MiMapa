@@ -1,9 +1,9 @@
 from fastapi import APIRouter, Request, HTTPException
 from authlib.integrations.starlette_client import OAuth
-from ..core.config import settings
-from ..core.database import users_collection
-from ..core.security import create_access_token
-from ..models.user import UserBase
+from core.config import settings
+from core.database import users_collection
+from core.security import create_access_token
+from models.user import UserBase
 from datetime import timedelta
 from fastapi.responses import RedirectResponse
 
@@ -66,12 +66,7 @@ async def auth_google(request: Request):
 
         # REDIRECCIÓN AL FRONTEND
         # Enviamos el token en la URL para que Vue lo capture
-        # En producción usamos ruta relativa, en desarrollo usamos FRONTEND_URL
-        if settings.FRONTEND_URL and settings.FRONTEND_URL.startswith("http://localhost"):
-            redirect_url = f"{settings.FRONTEND_URL}/auth-callback?token={access_token}"
-        else:
-            redirect_url = f"/auth-callback?token={access_token}"
-        return RedirectResponse(url=redirect_url)
+        return RedirectResponse(url=f"{settings.FRONTEND_URL}/auth-callback?token={access_token}")
 
     except Exception as e:
         # Manejo de errores

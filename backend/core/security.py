@@ -2,7 +2,7 @@ from datetime import datetime, timedelta
 from typing import Optional
 from jose import jwt, JWTError
 from passlib.context import CryptContext
-from .config import settings
+from core.config import settings
 from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 
@@ -27,8 +27,8 @@ def create_access_token(data: dict, expires_delta: Optional[timedelta] = None):
     return encoded_jwt
 
 async def get_current_user(token: str = Depends(oauth2_scheme)):
-    from .database import users_collection
-    from ..models.user import UserBase
+    from core.database import users_collection
+    from models.user import UserBase
     
     credentials_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
