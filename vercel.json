@@ -5,7 +5,7 @@
       "src": "frontend/vue-frontend/package.json",
       "use": "@vercel/static-build",
       "config": {
-        "distDir": "dist"
+        "distDir": "frontend/vue-frontend/dist"
       }
     },
     {
@@ -13,14 +13,22 @@
       "use": "@vercel/python"
     }
   ],
-  "rewrites": [
+  "routes": [
     {
-      "source": "/api/(.*)",
-      "destination": "/backend/main.py"
+      "src": "/api/(.*)",
+      "dest": "/backend/main.py"
     },
     {
-      "source": "/(.*)",
-      "destination": "/frontend/vue-frontend/index.html"
+      "src": "/assets/(.*)",
+      "dest": "/frontend/vue-frontend/dist/assets/$1"
+    },
+    {
+      "src": "/(.*\\.(js|css|png|jpg|jpeg|gif|svg|ico|json))",
+      "dest": "/frontend/vue-frontend/dist/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/frontend/vue-frontend/dist/index.html"
     }
   ]
 }
