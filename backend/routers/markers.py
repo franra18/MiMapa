@@ -1,9 +1,9 @@
 from fastapi import APIRouter, Depends, HTTPException
 from typing import List
-from models.marker import MarkerCreate, MarkerResponse
-from core.database import markers_collection
-from core.security import get_current_user
-from models.user import UserBase
+from ..models.marker import MarkerCreate, MarkerResponse
+from ..core.database import markers_collection
+from ..core.security import get_current_user
+from ..models.user import UserBase
 from bson import ObjectId
 
 router = APIRouter(prefix="/markers", tags=["Markers"])

@@ -1,9 +1,9 @@
 from fastapi import APIRouter, Request, HTTPException
 from authlib.integrations.starlette_client import OAuth
-from core.config import settings
-from core.database import users_collection
-from core.security import create_access_token
-from models.user import UserBase
+from ..core.config import settings
+from ..core.database import users_collection
+from ..core.security import create_access_token
+from ..models.user import UserBase
 from datetime import timedelta
 from fastapi.responses import RedirectResponse
 

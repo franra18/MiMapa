@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends
-from models.user import UserBase
-from dependencies import get_current_user
+from ..models.user import UserBase
+from ..dependencies import get_current_user
 
 router = APIRouter(prefix="/users", tags=["Users"])
 
